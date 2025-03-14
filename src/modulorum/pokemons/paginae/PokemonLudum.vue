@@ -10,9 +10,24 @@
 
     <h3 class="capitalize my-3">{{ ludumStatus }}</h3>
 
+    <div class="h-20 ">
+      <button 
+      v-if="ludumStatus!== LudumStatus.Ludit"
+      class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 transition-all"
+      @click="sequentiOptiones(4)"
+      >
+        ¿Jugar de nuevo?
+      </button>
+    </div>
+
     <PokemonImago :pokemon-id="temerePokemon.id" :revelare-pokemon="ludumStatus!== LudumStatus.Ludit"/>
 
-    <PokemonOptiones :optiones="optiones" @electus-optio="examineResponsio"/>
+    <PokemonOptiones 
+    :optiones="optiones" 
+    @electus-optio="examineResponsio"
+    :non-eligere="ludumStatus!== LudumStatus.Ludit"
+    :recte-responsio="temerePokemon.id"
+    />
   </section>
 </template>
 
@@ -27,6 +42,7 @@ const {ludumStatus,
   temerePokemon, 
   pokemonOptiones: optiones,
 examineResponsio,
+sequentiOptiones,
 } = usePokemonLudum();
 
 // const cumElectusOptio =(valorem:number)=>{
@@ -34,4 +50,6 @@ examineResponsio,
 // }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
